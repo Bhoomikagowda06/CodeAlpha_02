@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Stock Ledger</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <main class="ledger">
+
+    <header class="ledger__header">
+      <h1>Stock Ledger</h1>
+      <p class="tagline">Track what you own, plainly.</p>
+    </header>
+
+    <section class="add-holding">
+      <h2>Add a holding</h2>
+      <form id="add-form" class="add-form">
+        <div class="field">
+          <label for="symbol">Symbol</label>
+          <select id="symbol" name="symbol" required></select>
+        </div>
+        <div class="field">
+          <label for="quantity">Quantity</label>
+          <input type="number" id="quantity" name="quantity" min="0.0001" step="any" placeholder="0" required />
+        </div>
+        <button type="submit" class="btn-add">Add to ledger</button>
+      </form>
+      <p id="form-error" class="form-error" role="alert"></p>
+    </section>
+
+    <section class="holdings">
+      <h2>Your ledger</h2>
+
+      <div class="table-wrap">
+        <table id="holdings-table">
+          <thead>
+            <tr>
+              <th class="col-symbol">Symbol</th>
+              <th class="col-qty">Quantity</th>
+              <th class="col-price">Price</th>
+              <th class="col-value">Value</th>
+              <th class="col-remove"><span class="sr-only">Remove</span></th>
+            </tr>
+          </thead>
+          <tbody id="holdings-body">
+            <!-- rows injected by script.js -->
+          </tbody>
+        </table>
+
+        <p id="empty-state" class="empty-state">Nothing entered yet. Add a holding above to start your ledger.</p>
+      </div>
+
+      <div class="total-row">
+        <span class="total-label">Total investment</span>
+        <span id="total-value" class="total-value">$0.00</span>
+      </div>
+    </section>
+
+    <section class="export">
+      <button id="export-csv" class="btn-secondary">Save as CSV</button>
+      <button id="export-txt" class="btn-secondary">Save as text</button>
+    </section>
+
+    <footer class="ledger__footer">
+      <p>Prices are fixed reference values for this demo, not live market data.</p>
+    </footer>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
